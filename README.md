@@ -10,8 +10,8 @@ Then run with:
 
     $ corkscrew repl
     Clojure 1.0.0--SNAPSHOT
-    user=> (require 'sketchbook.bio)
-    user=> (sketchbook.bio/run)
+    user=> (require 'sketchbook.pop)
+    user=> (sketchbook.pop/run)
 
 To install corkscrew, see http://github.com/technomancy/corkscrew
 
