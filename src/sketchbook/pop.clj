@@ -1,6 +1,7 @@
 (ns sketchbook.pop
-  (:use [sketchbook.applet]
-        [rosado.processing]))
+  (:refer-clojure :exclude [pop])
+  (:use [rosado.processing]
+        [rosado.processing.applet]))
 
 (def generation (atom 0.0))
 
@@ -17,7 +18,9 @@
             (+ (* y 100) 10)
             90 90))))
 
-(defapplet popp "Synthpop-inspired Jams"
+(defapplet pop "Synthpop-inspired Jams"
   setup draw 510 510)
 
-(run-popp)
+;; To make things go:
+;; (run-pop)
+;; (stop-pop)

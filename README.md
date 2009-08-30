@@ -11,7 +11,7 @@ Then run with:
     $ corkscrew repl
     Clojure 1.0.0--SNAPSHOT
     user=> (require 'sketchbook.pop)
-    user=> (sketchbook.pop/run)
+    user=> (sketchbook.pop/run-pop)
 
 To install corkscrew, see http://github.com/technomancy/corkscrew
 
