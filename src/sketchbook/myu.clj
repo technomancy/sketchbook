@@ -4,7 +4,7 @@
 
 (defn frame-count [] (.frameCount *applet*))
 
-(def last-vortex (atom [0 0]))
+;; TODO: calculate position as a function of frame-count instead of by mutation
 (def vortex (atom [0 0]))
 (def vortex-size 20)
 (def vortex-velocity (atom [10 10]))
@@ -39,7 +39,7 @@
   (move!)
   (draw-vortex (* 150 (/ (+ (sine-frame) 1) 2))))
 
-(defapplet myu "Something vaguely birdlike"
+(defapplet myu "Something vaguely Birdlike"
   setup draw 800 600)
 
 ;; (run-myu)
