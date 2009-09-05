@@ -17,10 +17,24 @@ To install corkscrew, see http://github.com/technomancy/corkscrew
 
 ## Sketches
 
-Pop, or "Synthpop-inspired Jams": http://github.com/technomancy/sketchbook/blob/master/src/sketchbook/pop.clj
+### Pop
 
-Myu, or "Something vaguely Birdlike": http://github.com/technomancy/sketchbook/blob/master/src/sketchbook/myu.clj
+or "Synthpop-inspired Jams"
+2009-08-27
 
-Chu or ""That Thing I Always Used to Draw in Math Class": http://github.com/technomancy/sketchbook/blob/master/src/sketchbook/chu.clj
+http://github.com/technomancy/sketchbook/blob/master/src/sketchbook/pop.clj
+
+### Myu
+
+or "Something vaguely Birdlike"
+2009-08-29
+http://github.com/technomancy/sketchbook/blob/master/src/sketchbook/myu.clj
+
+### Chu
+
+or "That Thing I Always Used to Draw in Math Class"
+2009-08-30
+
+http://github.com/technomancy/sketchbook/blob/master/src/sketchbook/chu.clj
 
 Copyright (c) 2009 Phil Hagelberg; see file COPYING for details.

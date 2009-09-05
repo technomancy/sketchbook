@@ -22,9 +22,9 @@
     (reset! x 0)
     (swap! y #(mod (inc %) 5))))
 
-(defapplet pop "Synthpop-inspired Jams"
-  setup draw 510 510)
+(defapplet pop :title "Synthpop-inspired Jams"
+  :setup setup :draw draw :width 510 :height 510)
 
 ;; To make things go:
-;; (run-pop)
-;; (stop-pop)
+;; (run pop)
+;; (stop pop)

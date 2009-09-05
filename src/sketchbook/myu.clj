@@ -2,8 +2,6 @@
   (:use [rosado.processing]
         [rosado.processing.applet]))
 
-(defn frame-count [] (.frameCount *applet*))
-
 ;; TODO: calculate position as a function of frame-count instead of by mutation
 (def vortex (atom [0 0]))
 (def vortex-size 20)
@@ -33,14 +31,14 @@
   (background-float 0)
   (smooth)
   (no-stroke)
-  (framerate 10))
+  (framerate 40))
 
 (defn draw []
   (move!)
   (draw-vortex (* 150 (/ (+ (sine-frame) 1) 2))))
 
-(defapplet myu "Something vaguely Birdlike"
-  setup draw 800 600)
+(defapplet myu :title "Something vaguely Birdlike"
+  :setup setup :draw draw :width 800 :height 600)
 
-;; (run-myu)
-;; (stop-myu)
+;; (run myu)
+;; (stop myu)

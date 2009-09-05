@@ -4,12 +4,6 @@
 
 (def step 10)
 
-(defn height []
-  (.getHeight *applet*))
-
-(defn width []
-  (.getWidth *applet*))
-
 (defn chu-curve [n]
   (line n 0 0 (- (height) n))
     (if (< n (height))
@@ -25,8 +19,8 @@
     (with-rotation [PI]
       (chu-curve 0))))
 
-(defapplet chu "That Thing I Always Used to Draw in Math Class"
-  setup #() 512 512)
+(defapplet chu :title "That Thing I Always Used to Draw in Math Class"
+  :setup setup :width 512 :height 512)
 
-;; (run-chu)
-;; (stop-chu)
+;; (run chu)
+;; (stop chu)
