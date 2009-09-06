@@ -6,8 +6,10 @@
   (:import [java.util Date]))
 
 ;; Point this at a web server log file!
-(def lines
-     (atom (line-seq (reader "/home/phil/documents/logs/access.log"))))
+(def lines (atom (line-seq (reader (.getResourceAsStream
+                                    (.getContextClassLoader
+                                     (Thread/currentThread))
+                                    "sketchbook/sample.log")))))
 
 (def last-time (atom false))
 
