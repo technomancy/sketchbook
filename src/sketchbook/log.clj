@@ -45,13 +45,14 @@
   (rect 0 0 510 510))
 
 (defn draw []
-  (let [the-line (parse (first @lines))
-        time (.getTime (parse-time (second the-line)))]
-    (draw-line the-line)
-    (when @last-time
-      (println (- time @last-time))
-      (.delay *applet* (Math/log (- time @last-time))))
-    (reset! last-time time))
+  (if (seq @lines)
+    (let [the-line (parse (first @lines))
+          time (.getTime (parse-time (second the-line)))]
+      (draw-line the-line)
+      (when @last-time
+        (.delay *applet* (Math/log (- time @last-time))))
+      (reset! last-time time))
+    (no-loop))
   (fade-background)
   (swap! lines rest))
 
