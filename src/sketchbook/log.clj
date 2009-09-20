@@ -58,10 +58,9 @@
   (fade-background)
   (swap! lines rest))
 
-
 (defapplet log :title "Log visualizer"
   :setup (fn [] (no-stroke) (background-int 0)) :draw draw
   :width 510 :height 510)
-(run log)
 
+;; (run log)
 ;; (stop log)
