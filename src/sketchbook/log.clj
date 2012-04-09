@@ -1,15 +1,11 @@
 (ns sketchbook.log
-  (:use [rosado.processing]
-        [rosado.processing.applet]
-        [clojure.contrib.str-utils :only [re-split]]
-        [clojure.contrib.duck-streams :only [reader]])
+  (:use [quil.core])
+  (:require [clojure.string :as string]
+            [clojure.java.io :as io])
   (:import [java.util Date]))
 
 ;; Point this at a web server log file!
-(def lines (atom (line-seq (reader (.getResourceAsStream
-                                    (.getContextClassLoader
-                                     (Thread/currentThread))
-                                    "sketchbook/sample.log")))))
+(def lines (atom (line-seq (io/reader (io/resource "sketchbook/sample.log")))))
 
 (def last-time (atom false))
 
@@ -33,7 +29,7 @@
            (map #(Integer/parseInt %) (drop 3 parts)))))
 
 (defn draw-line [[ip time code size]]
-  (let [segments (map #(Integer/parseInt %) (re-split #"\." ip))
+  (let [segments (map #(Integer/parseInt %) (string/split ip #"\."))
         radius (* (Math/log (Integer/parseInt size)) 10)]
     (fill-int 255)
     (ellipse (+ (nth segments 0)
@@ -52,15 +48,12 @@
           time (.getTime (parse-time (second the-line)))]
       (draw-line the-line)
       (when @last-time
-        (.delay *applet* (Math/log (- time @last-time))))
+        (delay-frame (Math/log (- time @last-time))))
       (reset! last-time time))
     (no-loop))
   (fade-background)
   (swap! lines rest))
 
-(defapplet log :title "Log visualizer"
+(defsketch loggo :title "Log visualizer"
   :setup (fn [] (no-stroke) (background-int 0)) :draw draw
   :width 510 :height 510)
-
-;; (run log)
-;; (stop log)

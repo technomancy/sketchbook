@@ -1,9 +1,8 @@
 (ns sketchbook.pch
-  (:use [rosado.processing]
-        [rosado.processing.applet]))
+  (:use [quil.core]))
 
 (defn setup []
-  (color-mode HSB)
+  ;; (color-mode HSB)
   (fill-int 255)
   (no-stroke)
   (rect 0 0 (width) (height))
@@ -17,8 +16,5 @@
             b (* 2 a)]
         (triangle a a b a a b)))))
 
-(defapplet pch :title "Peachy Keen"
+(defsketch pch :title "Peachy Keen"
   :setup setup :draw draw :size [400 400])
-
-;; (run pch)
-;; (stop pch)

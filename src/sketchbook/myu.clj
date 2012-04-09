@@ -1,6 +1,5 @@
 (ns sketchbook.myu
-  (:use [rosado.processing]
-        [rosado.processing.applet]))
+  (:use [quil.core]))
 
 ;; TODO: calculate position as a function of frame-count instead of by mutation
 (def vortex (atom [0 0]))
@@ -11,9 +10,9 @@
   (sin (/ (frame-count) 5.0)))
 
 (defn bounce! []
-  (when (or (> (first @vortex) (.getWidth *applet*)) (neg? (first @vortex)))
+  (when (or (> (first @vortex) (width)) (neg? (first @vortex)))
     (swap! vortex-velocity (fn [[x y]] [(- x) y])))
-  (when (or (> (last @vortex) (.getHeight *applet*)) (neg? (last @vortex)))
+  (when (or (> (last @vortex) (height)) (neg? (last @vortex)))
     (swap! vortex-velocity (fn [[x y]] [x (- y)]))))
 
 (defn move! []
@@ -31,14 +30,11 @@
   (background-float 0)
   (smooth)
   (no-stroke)
-  (framerate 40))
+  (frame-rate 40))
 
 (defn draw []
   (move!)
   (draw-vortex (* 150 (/ (+ (sine-frame) 1) 2))))
 
-(defapplet myu :title "Something vaguely Birdlike"
-  :setup setup :draw draw :width 800 :height 600)
-
-;; (run myu)
-;; (stop myu)
+(defsketch myu :title "Something vaguely Birdlike"
+  :setup setup :draw draw :size [800 600])
