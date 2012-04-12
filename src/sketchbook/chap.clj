@@ -7,8 +7,6 @@
 
 (def p (atom [0 0]))
 
-(def c (atom 255))
-
 (defn within [bound n]
   (cond (< 0 n bound) n
         (< n 0) (Math/abs n)
@@ -18,17 +16,22 @@
   (+ n (- (random (* 2 r)) r)))
 
 (defn update [[x y]]
-  [(within (width) (walk x 5))
-   (within (height) (walk y 5))])
+  [(within (width) (walk x 10))
+   (within (height) (walk y 10))])
+
+(defn colors [x y w h]
+  [(* (/ x w) 255) (* (/ y h) 255) 255])
 
 (defn draw []
-  (swap! p update)
-  (swap! c #(within 255 (walk % 5)))
-  (fill @c)
-  (stroke (- 255 @c))
-  (apply ellipse (concat @p [15 15])))
+  (let [[x y] (swap! p update)
+        colors (colors x y (width) (height))
+        size (+ 10 (* 20 (/ (- (+ (width) (height)) x y) (+ (width) (height)))))
+        border (+ 20 (* 30 (+ 1 (Math/sin (/ (frame-count) 100)))))]
+    (apply stroke (map (partial + border) colors))
+    (apply fill colors)
+    (apply ellipse [x y size size])))
 
 (defsketch chap
   :setup setup
   :draw #'draw
-  :size [323 200])
+  :size [646 400])
